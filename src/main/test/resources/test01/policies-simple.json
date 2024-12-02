@@ -10,6 +10,11 @@
 		"events": ["BULL","BEAR"]
 	},
 	{
+		"comparator":"greater_than",
+		"compareToValue": "100000",
+		"events": ["DEBT_DEFAULT"]
+	},
+	{
 		"comparator":"less_or_equal ",
 		"compareToValue": "999",
 		"events": ["AUDIT_RISK", "OUT_OF_INVESTORS"]
