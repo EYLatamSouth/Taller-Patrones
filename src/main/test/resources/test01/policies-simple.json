@@ -15,7 +15,7 @@
 		"events": ["DEBT_DEFAULT"]
 	},
 	{
-		"comparator":"less_or_equal ",
+		"comparator":"less_equal ",
 		"compareToValue": "999",
 		"events": ["AUDIT_RISK", "OUT_OF_INVESTORS"]
 	}

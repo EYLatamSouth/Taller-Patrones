@@ -1,7 +1,7 @@
 [
 	{
 		"field" : "isForeign",
-		"comparator":"equals",
+		"comparator":"equal",
 		"compareToValue": "TRUE",
 		"operator": "RESULT",
 		"events": ["OUT_OF_INVESTORS"]
@@ -47,7 +47,7 @@
 	{
 		"field" : "type",
 		"comparator":"equal",
-		"compareToValue": "comodity",
+		"compareToValue": "COMODITY",
 		"operator": "NOT",
 		"events": ["BULL"]
 	}

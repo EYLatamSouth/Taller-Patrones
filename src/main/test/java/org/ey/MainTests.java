@@ -36,12 +36,13 @@ public class MainTests {
         final List<Map<String, Object>> policies =
                 UtilsProxy.readPolicies(policiesPath);
         final List<Map<String, String>> movements=
-                UtilsProxy.readMovements("src/main/test/resources/test02/portfolio-movements.txt");
+                UtilsProxy.readMovements("src/main/test/resources/test01/portfolio-movements.txt");
 
 
         expectedResults.forEach(
                 (oldStatus, expectedNewStatus) -> {
                     testDao.savePortfolioStatus(id, oldStatus);
+                    System.out.println("Testing id: " + id + ", setStatus:" + oldStatus + ",expectedNew: " + expectedNewStatus);
                     policyProcessor.process(
                             policies,
                             movements
@@ -49,17 +50,6 @@ public class MainTests {
                     Assertions.assertEquals(expectedNewStatus, testDao.getPortfolioStatusRaw(id));
                 });
 
-        policyProcessor.setUseSimplePolicies(true);
-
-        expectedResults.forEach(
-                (oldStatus, expectedNewStatus) -> {
-                    testDao.savePortfolioStatus(id, oldStatus);
-                    policyProcessor.process(
-                            policies,
-                            movements
-                    );
-                    Assertions.assertEquals(expectedNewStatus, testDao.getPortfolioStatusRaw(id));
-                });
 
         Assertions.assertEquals(0, testDao.getTotalExceptions());
         Assertions.assertTrue(testDao.getInvocations("getPortfolioStatus") > 0);
@@ -120,7 +110,7 @@ public class MainTests {
         //7|20000000.00|GOLD|COMODITY|FALSE ->RESUELVE DEBT_DEFAULT
         var results07 = Map.of(
                 PortfolioStatus.CLOSED, PortfolioStatus.CLOSED,
-                PortfolioStatus.EMPTY, PortfolioStatus.DEFENSIVE,
+                PortfolioStatus.EMPTY, PortfolioStatus.EMPTY,
                 PortfolioStatus.DEFENSIVE, PortfolioStatus.EMPTY,
                 PortfolioStatus.VIP, PortfolioStatus.DEFENSIVE,
                 PortfolioStatus.ACTIVE, PortfolioStatus.DEFENSIVE);

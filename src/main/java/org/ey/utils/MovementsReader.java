@@ -10,7 +10,7 @@ import java.util.Map;
 
 class MovementsReader {
     static List<Map<String, String>> readMovements(String path){
-        try(BufferedReader br = new BufferedReader(new FileReader("src/main/resources/portfolio-movements.txt"))) {
+        try(BufferedReader br = new BufferedReader(new FileReader(path))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
             String[] headers = line.split("\\|");
